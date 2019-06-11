@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Calculator</title>
+    <style>
+        .btn {
+            font-size: 20px !important;
+            border-radius: 8px;
+            font-weight: bold;
+            outline: none;
+            width: 70px;
+            height: 55px;
+            margin: 4px 2px;
+        }
+
+        .operator {
+            width: 79.5px;
+        }
+
+        .zero {
+            width: 148.5px;
+        }
+
+        .zero1 {
+            width: 158px;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+        }
+
+        .container {
+            margin: 10% auto;
+        }
+
+        .border {
+            width: 331px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div style="margin:200px 400px" class="border border-dark">
+            <div style="padding:5px">
+                <h2><input type="text" style="width:320px;height:45;text-align:right;font-size:25;" id="screen"
+                        value="0" readonly></h2>
+            </div>
+            <div style="padding:5px">
+                <button type="button" class="btn btn-outline-dark" onclick="In('1')">1</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('2')">2</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('3')">3</button>
+                <button type="button" class="btn btn-outline-success operator" onclick="Clear()">A</button>
+            </div>
+            <div style="padding:5px">
+                <button type="button" class="btn btn-outline-dark" onclick="In('4')">4</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('5')">5</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('6')">6</button>
+                <button type="button" class="btn btn btn-outline-primary operator"
+                    onclick="Operator('+')">&plus;</button>
+
+            </div>
+            <div style="padding:5px">
+                <button type="button" class="btn btn-outline-dark" onclick="In('7')">7</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('8')">8</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('9')">9</button>
+                <button type="button" class="btn btn btn-outline-primary operator" onclick="Operator('-')">-</button>
+            </div>
+            <div style="padding:5px">
+                <button type="button" class="btn btn-outline-dark zero" onclick="In('0')">0</button>
+                <button type="button" class="btn btn-outline-info" onclick="In('.')">.</button>
+                <button type="button" class="btn btn btn-outline-danger operator" onclick="Equal()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="function.js"></script>
+</body>
+
+</html>

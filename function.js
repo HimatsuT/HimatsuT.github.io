@@ -21,7 +21,7 @@ function Operator(obj) {
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
     if (obj !== lastVal) {
-        if (lastVal === "+" || lastVal == "-") {
+        if (lastVal === "+" || lastVal === "-") {
             str = str.slice(0, str.length - 2);
         }
         screen.value = str + ` ${obj}`;
@@ -30,7 +30,7 @@ function Operator(obj) {
 function Decimal(str, obj) {
     str += obj
     var b = str.replace(/[0-9]+/g, ",");
-    for (let i = 0; i < b.length; i++) {
+    for (var i = 0; i < b.length; i++) {
         if (b[i] === b[i + 1]) {
             str = str.substring(0, str.length - 1);
         }

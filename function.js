@@ -29,7 +29,7 @@ function Operator(obj) {
 }
 function Decimal(str, obj) {
     str += obj
-    var b = str.replace(/[0-9]+/g, ",");
+    var b = str.replace(/[0-9]+$|\.+[0-9]+|\./g,",");
     for (var i = 0; i < b.length; i++) {
         if (b[i] === b[i + 1]) {
             str = str.substring(0, str.length - 1);

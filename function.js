@@ -4,7 +4,7 @@ function In(obj) {
     var str = screen.value;
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
-    var regex = /^([+-]|[--]|[*]|[/])$/g;
+    var regex = /^([+]|[-]|[*]|[/])$/g;
     if (str === "0" || str === "Error") {
         str = "";
     }

@@ -1,4 +1,3 @@
-
 const screen = document.getElementById("screen");
 function In(obj) {
     var str = screen.value;
@@ -7,6 +6,9 @@ function In(obj) {
     var regex = /^([+]|[-]|[*]|[/])$/g;
     if (str === "0" || str === "Error") {
         str = "";
+    }
+    if(obj === '.' && lastVal.includes('.')){
+        return;
     }
     if (lastVal.match(regex) !== null) {
         screen.value += ` ${obj}`;
@@ -28,12 +30,12 @@ function Operator(obj) {
     }
 }
 function Decimal(str, obj) {
-    str += obj
+    str += obj;
     var b = str.replace(/[0-9]+/g,",");
     for (let i = 0; i < b.length; i++) {
-        if (b[i] === b[i + 1]) {
+            if (b[i] === b[i + 1]) {
             str = str.substring(0, str.length -1);
-        }
+        }      
     }
     return str;
 }

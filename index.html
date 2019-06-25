@@ -22,12 +22,11 @@
             width: 79.5px;
         }
 
-        .zero {
+        .a {
             width: 148.5px;
         }
-
-        .zero1 {
-            width: 158px;
+        .ca {
+            width: 157.5px;
         }
 
         .btn:active {
@@ -47,40 +46,115 @@
 
 <body>
     <div class="container">
-        <div style="margin:200px 400px" class="border border-dark">
+        <div style="margin:auto" class="border border-dark">
             <div style="padding:5px">
-                <h2><input type="text" style="width:320px;height:45;text-align:right;font-size:25;" id="screen"
-                        value="0" readonly></h2>
-            </div>
-            <div style="padding:5px">
+                <h2><input type="text" style="width:100%;height:100%;text-align:right;font-size:25;" id="screen"
+                    value="0" readonly></h2>
+                <button type="button" class="btn btn-outline-success a" onclick="Clear()">A</button>
+                <button type="button" class="btn btn btn-outline-danger ca" onclick="ClearOne()">C</button>  
                 <button type="button" class="btn btn-outline-dark" onclick="In('1')">1</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('2')">2</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('3')">3</button>
-                <button type="button" class="btn btn-outline-success operator" onclick="Clear()">A</button>
-            </div>
-            <div style="padding:5px">
+                <button type="button" class="btn btn btn-outline-primary operator">&divide;</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('4')">4</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('5')">5</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('6')">6</button>
-                <button type="button" class="btn btn btn-outline-primary operator"
-                    onclick="Operator('+')">&plus;</button>
-
-            </div>
-            <div style="padding:5px">
+                <button type="button" class="btn btn btn-outline-primary operator" onclick="Operator('+')">&plus;</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('7')">7</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('8')">8</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('9')">9</button>
-                <button type="button" class="btn btn btn-outline-primary operator" onclick="Operator('-')">-</button>
-            </div>
-            <div style="padding:5px">
-                <button type="button" class="btn btn-outline-dark zero" onclick="In('0')">0</button>
+                <button type="button" class="btn btn btn-outline-primary operator" onclick="Operator('-')">&minus;</button>
+                <button type="button" class="btn btn-outline-dark" onclick="In('0')">0</button>
                 <button type="button" class="btn btn-outline-info" onclick="In('.')">.</button>
-                <button type="button" class="btn btn btn-outline-danger operator" onclick="Equal()">=</button>
-            </div>
+                <button type="button" class="btn btn btn-outline-danger" onclick="Equal()">=</button>
+                <button type="button" class="btn btn btn-outline-primary operator">x</button>
+            </div>    
         </div>
     </div>
+    <script> 
+    
+const screen = document.getElementById("screen");
+function In(obj) {
+    var str = screen.value;
+    var array = str.split(' ');
+    var lastVal = array[array.length - 1];
+    var regex = /^([+]|[-]|[*]|[/])$/g;
+    if (str === "0" || str === "Error") {
+        str = "";
+    }
+    if(obj === '.' && lastVal.includes('.')){
+        return;
+    }
+    if (lastVal.match(regex) !== null) {
+        screen.value += ` ${obj}`;
+    }
+    else {
+        screen.value = Decimal(str, obj);
+    }
+}
 
-    <script src="./function.js"> 
+function Operator(obj) {
+    var str = screen.value;
+    var array = str.split(' ');
+    var lastVal = array[array.length - 1];
+    if (obj !== lastVal) {
+        if (lastVal === "+" || lastVal === "-") {
+            str = str.slice(0, str.length - 2);
+        }
+        screen.value = str + ` ${obj}`;
+    }
+}
+function Decimal(str, obj) {
+    str += obj;
+    var b = str.replace(/[0-9]+/g,",");
+    for (let i = 0; i < b.length; i++) {
+            if (b[i] === b[i + 1]) {
+            str = str.substring(0, str.length -1);
+        }      
+    }
+    return str;
+}
+
+function Equal() {
+    var a = screen.value;
+    var array = a.split(' ');
+    var Result = 0;
+    Result = array.reduce((Number, Operater, Index) => {
+        var Result;
+        var NextValue = array[Index + 1];
+        switch (Operater) {
+            case "+":
+                Result = +Number + +NextValue;
+                console.log(array);
+                return Result;
+                break;
+            case "-":
+                Result = +Number - +NextValue;
+                return Result;
+                break;
+            default:
+                return Number;
+                break;
+        }
+        return Number + Operator;
+    })
+    if (isNaN(Result)) {
+        return screen.value = "Error";
+    }
+    else {
+        screen.value = Math.round(Result * 1000) / 1000;
+    }
+}
+function Clear() {
+    var a = document.getElementById("screen");
+    a.value = 0;
+}
+
+function ClearOne(){
+    var str = screen.value;
+    var array = str.split(' ');
+    var lastVal = array[array.length - 1];
+}
     </script>
 </body>
 

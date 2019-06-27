@@ -5,7 +5,7 @@ function In(obj) {
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
     var regex = /^([+]|[-]|[x]|[÷])$/g;
-    if (str === "0" || str === "Error") {
+    if (str === "0" || str === "Error" || str === "Infinity") {
         str = "";
     }
     if(obj === '.' && lastVal.includes('.')){

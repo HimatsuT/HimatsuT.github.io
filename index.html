@@ -23,10 +23,10 @@
         }
 
         .a {
-            width: 148.5px;
+            width: 157.5px;
         }
         .ca {
-            width: 157.5px;
+            width: 148.5px;
         }
 
         .btn:active {
@@ -50,12 +50,12 @@
             <div style="padding:5px">
                 <h2><input type="text" style="width:100%;height:100%;text-align:right;font-size:25;" id="screen"
                     value="0" readonly></h2>
-                <button type="button" class="btn btn-outline-success a" onclick="Clear()">A</button>
-                <button type="button" class="btn btn btn-outline-danger ca" onclick="ClearOne()">C</button>  
+                <button type="button" class="btn btn btn-outline-danger ca" onclick="ClearOne()">CE</button>  
+                <button type="button" class="btn btn-outline-success a" onclick="Clear()">AC</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('1')">1</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('2')">2</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('3')">3</button>
-                <button type="button" class="btn btn btn-outline-primary operator">&divide;</button>
+                <button type="button" class="btn btn btn-outline-primary operator" onclick="Operator('&divide;')">&divide;</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('4')">4</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('5')">5</button>
                 <button type="button" class="btn btn-outline-dark" onclick="In('6')">6</button>
@@ -67,12 +67,11 @@
                 <button type="button" class="btn btn-outline-dark" onclick="In('0')">0</button>
                 <button type="button" class="btn btn-outline-info" onclick="In('.')">.</button>
                 <button type="button" class="btn btn btn-outline-danger" onclick="Equal()">=</button>
-                <button type="button" class="btn btn btn-outline-primary operator">x</button>
+                <button type="button" class="btn btn btn-outline-primary operator" onclick="Operator('x')">x</button>
             </div>    
         </div>
     </div>
-    <script src="./function.js"> 
-    </script>
+    <script src="./function.js"></script>
 </body>
 
 </html>

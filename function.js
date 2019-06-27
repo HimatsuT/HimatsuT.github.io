@@ -1,9 +1,10 @@
+    
 const screen = document.getElementById("screen");
 function In(obj) {
     var str = screen.value;
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
-    var regex = /^([+]|[-]|[*]|[/])$/g;
+    var regex = /^([+]|[-]|[x]|[÷])$/g;
     if (str === "0" || str === "Error") {
         str = "";
     }
@@ -23,7 +24,7 @@ function Operator(obj) {
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
     if (obj !== lastVal) {
-        if (lastVal === "+" || lastVal === "-") {
+        if (lastVal === "+" || lastVal === "-" || lastVal === "x" || lastVal === "÷") {
             str = str.slice(0, str.length - 2);
         }
         screen.value = str + ` ${obj}`;
@@ -48,15 +49,22 @@ function Equal() {
         var Result;
         var NextValue = array[Index + 1];
         switch (Operater) {
+            case "x":
+                Result = +Number * +NextValue;
+                return Result;
+                break;
+            case "÷":
+                Result = +Number / +NextValue;
+                return Result;
+                break;
             case "+":
                 Result = +Number + +NextValue;
-                console.log(array);
                 return Result;
                 break;
             case "-":
                 Result = +Number - +NextValue;
                 return Result;
-                break;
+                break;        
             default:
                 return Number;
                 break;
@@ -70,7 +78,31 @@ function Equal() {
         screen.value = Math.round(Result * 1000) / 1000;
     }
 }
+function Check(){}
 function Clear() {
     var a = document.getElementById("screen");
     a.value = 0;
+}
+
+function ClearOne(){
+    var str = screen.value;
+    var a = str.split('');
+    var lastVal = a[a.length - 1];    
+    console.log(str);
+    if(lastVal === str ){         
+       str = 0;
+       console.log(str)
+    }
+    else {
+        if(lastVal === " "){
+            str = str.slice(0,str.length - 3);
+        }
+        else if(lastVal === "+" || lastVal === "-" || lastVal === "x" || lastVal === "÷"){
+                str = str.slice(0,str.length - 2);
+        }
+        else{
+            str = str.slice(0,str.length - 1);
+        }
+    }
+    screen.value = str;
 }

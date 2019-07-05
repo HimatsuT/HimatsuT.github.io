@@ -110,7 +110,7 @@ function ClearOne(){
 var myVar;
 
 function myFunction() {
-  myVar = setTimeout(showPage, 1200);
+  myVar = setTimeout(showPage, 800);
 }
 
 function showPage() {

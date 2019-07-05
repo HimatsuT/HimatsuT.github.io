@@ -1,12 +1,14 @@
     
 const screen = document.getElementById("screen");
+let result = "";
 function In(obj) {
     var str = screen.value;
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
     var regex = /^([+]|[-]|[x]|[÷])$/g;
-    if (str === "0" || str === "Error" || str === "Infinity") {
+    if (str === "0" || str === "Error" || str === "Infinity" || result !== "") {
         str = "";
+        result = "";
     }
     if(obj === '.' && lastVal.includes('.')){
         return;
@@ -17,6 +19,7 @@ function In(obj) {
     else {
         screen.value = Decimal(str, obj);
     }
+    screen.scrollLeft = screen.scrollWidth;
 }
 
 function Operator(obj) {
@@ -29,6 +32,8 @@ function Operator(obj) {
         }
         screen.value = str + ` ${obj}`;
     }
+    screen.scrollLeft = screen.scrollWidth;
+
 }
 function Decimal(str, obj) {
     str += obj;
@@ -76,6 +81,7 @@ function Equal() {
     }
     else {
         screen.value = Math.round(Result * 1000) / 1000;
+        result = 1;
     }
 }
 function Check(){}

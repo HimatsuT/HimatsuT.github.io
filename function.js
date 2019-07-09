@@ -166,3 +166,13 @@ const screen = document.getElementById("screen");
             }
             screen.value = str;
         }
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 800);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }

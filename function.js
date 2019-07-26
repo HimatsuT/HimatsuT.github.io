@@ -19,11 +19,8 @@ function In(obj) {
     else {
         screen.value = Decimal(str, obj);
     }
-    operator = true;
-    operator1 = true;
     screen.scrollLeft = screen.scrollWidth;
 }
-let operator = true;
 function Operator(obj) {
     var str = screen.value;
     var array = str.split(' ');
@@ -34,12 +31,10 @@ function Operator(obj) {
                 str = str.slice(0, str.length - 2);
             }
             screen.value = str + ` ${obj}`;
-            operator = false;
         }
     }
     screen.scrollLeft = screen.scrollWidth;
 }
-let operator1 = true;
 function CheckDecimal(obj) {
     var str = screen.value;
     var array = str.split(' ');
@@ -53,7 +48,6 @@ function CheckDecimal(obj) {
                 screen.value = str + ` ${obj} `;
             }
         }
-        operator1 = false;
     }
     screen.scrollLeft = screen.scrollWidth;
 }

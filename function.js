@@ -25,13 +25,11 @@ function Operator(obj) {
     var str = screen.value;
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
-    if (operator == true) {
-        if (obj !== lastVal) {
-            if (lastVal === "+" || lastVal === "x" || lastVal === "÷") {
-                str = str.slice(0, str.length - 2);
-            }
-            screen.value = str + ` ${obj}`;
+    if (obj !== lastVal) {
+        if (lastVal === "+" || lastVal === "x" || lastVal === "÷") {
+            str = str.slice(0, str.length - 2);
         }
+        screen.value = str + ` ${obj}`;
     }
     screen.scrollLeft = screen.scrollWidth;
 }
@@ -39,14 +37,12 @@ function CheckDecimal(obj) {
     var str = screen.value;
     var array = str.split(' ');
     var lastVal = array[array.length - 1];
-    if (operator1 == true) {
-        if (lastVal != "-") {
-            if (lastVal == "+" || lastVal == "x" || lastVal == "÷") {
-                screen.value = str + ` ${obj}`;
-            }
-            else {
-                screen.value = str + ` ${obj} `;
-            }
+    if (lastVal != "-") {
+        if (lastVal == "+" || lastVal == "x" || lastVal == "÷") {
+            screen.value = str + ` ${obj}`;
+        }
+        else {
+            screen.value = str + ` ${obj} `;
         }
     }
     screen.scrollLeft = screen.scrollWidth;

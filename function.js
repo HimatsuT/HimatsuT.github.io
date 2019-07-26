@@ -5,7 +5,7 @@ const screen = document.getElementById("screen");
             var str = screen.value;
             var array = str.split(' ');
             var lastVal = array[array.length - 1];
-            var regex = /^([+]|[-]|[x]|[÷])$/g;
+            var regex = /^([+]|[x]|[÷])$/g;
             if (str === "0" || str === "Error" || str === "Infinity" || result !== "") {
                 str = "";
                 result = "";
@@ -19,18 +19,41 @@ const screen = document.getElementById("screen");
             else {
                 screen.value = Decimal(str, obj);
             }
+            operator = true;
+            operator1 = true;
             screen.scrollLeft = screen.scrollWidth;
         }
-
+        let operator = true;
         function Operator(obj) {
             var str = screen.value;
             var array = str.split(' ');
             var lastVal = array[array.length - 1];
-            if (obj !== lastVal) {
-                if (lastVal === "+" || lastVal === "-" || lastVal === "x" || lastVal === "÷") {
-                    str = str.slice(0, str.length - 2);
+            if (operator == true) {
+                if (obj !== lastVal) {
+                    if (lastVal === "+" || lastVal === "x" || lastVal === "÷") {
+                        str = str.slice(0, str.length - 2);
+                    }
+                    screen.value = str + ` ${obj}`;
+                    operator = false;
                 }
-                screen.value = str + ` ${obj}`;
+            }
+            screen.scrollLeft = screen.scrollWidth;
+        }
+        let operator1 = true;
+        function CheckDecimal(obj) {
+            var str = screen.value;
+            var array = str.split(' ');
+            var lastVal = array[array.length - 1];
+            if (operator1 == true) {
+                if (lastVal != "-") {
+                    if (lastVal == "+" || lastVal == "x" || lastVal == "÷") {
+                        screen.value = str + ` ${obj}`;
+                    }
+                    else {
+                        screen.value = str + ` ${obj} `;
+                    }
+                }
+                operator1 = false ;
             }
             screen.scrollLeft = screen.scrollWidth;
         }
@@ -56,46 +79,42 @@ const screen = document.getElementById("screen");
                 return false;
             }
             function orderOperations(arr) {
-                const cleanedArr = arr.map(function (value) {return value;}); 
-    
-                for (let i = 0; i < cleanedArr.length; i += 1) 
-                {
+                const cleanedArr = arr.map(function (value) { return value; });
+
+                for (let i = 0; i < cleanedArr.length; i += 1) {
                     let newVal;
                     let cleanedVal;
-            
-                    if (!bodmasNeeded(cleanedArr)) 
-                    {
+
+                    if (!bodmasNeeded(cleanedArr)) {
                         return cleanedArr;
                     }
-                
+
                     const val = cleanedArr[i];
-            
-                    if (i % 2 !== 0 && (val === 'x' || val === '÷')) 
-                    {
-                        switch (val) 
-                        {
+
+                    if (i % 2 !== 0 && (val === 'x' || val === '÷')) {
+                        switch (val) {
                             case 'x':
-                            newVal = +cleanedArr[i - 1] * +cleanedArr[i + 1];
-                            cleanedVal = newVal;
-                            cleanedArr.splice(i - 1, 3, cleanedVal);
-                            break;
+                                newVal = +cleanedArr[i - 1] * +cleanedArr[i + 1];
+                                cleanedVal = newVal;
+                                cleanedArr.splice(i - 1, 3, cleanedVal);
+                                break;
                             case '÷':
-                            newVal = +cleanedArr[i - 1] / +cleanedArr[i + 1];
-                            cleanedVal = newVal;
-                            cleanedArr.splice(i - 1, 3, cleanedVal);
-                            break;
+                                newVal = +cleanedArr[i - 1] / +cleanedArr[i + 1];
+                                cleanedVal = newVal;
+                                cleanedArr.splice(i - 1, 3, cleanedVal);
+                                break;
                             default: screen.value = 'Error';
                         }
 
                         i = -1;
                     }
                 }
-    
+
                 return cleanedArr;
-            }    
-                if (bodmasNeeded(array)) {
+            }
+            if (bodmasNeeded(array)) {
                 array = orderOperations(array);
-                }
+            }
             var Result = 0;
             Result = array.reduce((Number, Operater, Index) => {
                 var Result;
@@ -149,7 +168,7 @@ const screen = document.getElementById("screen");
             var str = screen.value;
             var a = str.split('');
             var lastVal = a[a.length - 1];
-            if (lastVal === str) {
+            if (lastVal === str || str == "Error") {
                 str = 0;
                 console.log(str)
             }
@@ -166,6 +185,7 @@ const screen = document.getElementById("screen");
             }
             screen.value = str;
         }
+
         var myVar;
 
         function myFunction() {
